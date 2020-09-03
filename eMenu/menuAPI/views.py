@@ -1,8 +1,9 @@
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, generics
+from django_filters.rest_framework import DjangoFilterBackend
 from .models import Dish, MenuCard
-from .serializers import DishSerializer, MenuCardSerializer
+from .serializers import DishSerializer, MenuCardSerializer, MenuCardListSerializer
 from .permissions import IsUser
 
 
@@ -54,3 +55,15 @@ def modify_menu_card(request, pk):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class MenuCardList(generics.ListAPIView):
+    serializer_class = MenuCardListSerializer
+    queryset = MenuCard.objects.filter(dishes__isnull=False)
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['name', 'creation_date', 'last_modified']
+    ordering_fields = ['name', 'dishes']
+
+
+
+

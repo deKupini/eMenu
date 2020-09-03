@@ -16,4 +16,4 @@ class MenuCard(models.Model):
     desc = models.CharField(max_length=120)
     creation_date = models.DateField(auto_now_add=True)
     last_modified = models.DateField(auto_now=True)
-    dishes = models.ManyToManyField(Dish)
+    dishes = models.ManyToManyField(Dish, blank=True)
