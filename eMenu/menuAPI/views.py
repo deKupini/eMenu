@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status, generics
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import Dish, MenuCard
-from .serializers import DishSerializer, MenuCardSerializer, MenuCardListSerializer
+from .serializers import DishSerializer, MenuCardSerializer, MenuCardListSerializer, MenuCardDetailSerializer
 from .permissions import IsUser
 
 
@@ -67,4 +67,4 @@ class MenuCardList(generics.ListAPIView):
 
 class MenuCardDetail(generics.RetrieveAPIView):
     queryset = MenuCard.objects.all()
-    serializer_class = MenuCardSerializer
+    serializer_class = MenuCardDetailSerializer

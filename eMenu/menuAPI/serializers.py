@@ -29,3 +29,11 @@ class MenuCardListSerializer(serializers.BaseSerializer):
 class DishDetailSerializer(DishSerializer):
     class Meta:
         fields = ['creation_date', 'last_modified']
+
+
+class MenuCardDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MenuCard
+        fields = ['name', 'desc', 'dishes', 'creation_date', 'last_modified']
+        depth = 1
+    # dishes = DishSerializer(many=True)
