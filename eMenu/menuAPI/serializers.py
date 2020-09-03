@@ -24,3 +24,8 @@ class MenuCardListSerializer(serializers.BaseSerializer):
             'last_modified': instance.last_modified,
             'dishes': instance.dishes.count()
         }
+
+
+class DishDetailSerializer(DishSerializer):
+    class Meta:
+        fields = ['creation_date', 'last_modified']

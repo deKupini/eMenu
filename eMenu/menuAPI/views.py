@@ -65,5 +65,6 @@ class MenuCardList(generics.ListAPIView):
     ordering_fields = ['name', 'dishes']
 
 
-
-
+class MenuCardDetail(generics.RetrieveAPIView):
+    queryset = MenuCard.objects.all()
+    serializer_class = MenuCardSerializer
